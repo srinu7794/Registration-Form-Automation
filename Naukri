@@ -1,0 +1,60 @@
+package Selinium;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class demo7 {
+	WebDriver driver;
+
+	@Before
+	public void setUp() throws Exception {
+		System.setProperty("WebDriver.edge.driver", "D:\\Selenium\\edgedriver\\msedgedriver.exe");
+		driver = new EdgeDriver();
+		driver.get("https://www.naukri.com/");
+		driver.manage().window().maximize();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void test() throws InterruptedException, IOException {
+		driver.findElement(By.id("register_Layer")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.id("name")).sendKeys("Kiran Mai");
+		driver.findElement(By.id("email")).sendKeys("Alynn.Mayes@SolarNyx.com");
+		driver.findElement(By.id("password")).sendKeys("Srujan@12");
+		driver.findElement(By.id("mobile")).sendKeys("7207429288");
+		
+		
+//		fresher/experience 
+		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div/div/div[1]/form/div[2]/div[4]/div[2]/div[2]")).click();
+//		
+		
+		// Take screenshot and store it as a file
+		  File src =  ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+		  // Copy the screenshot to the destination
+		  FileUtils.copyFile(src, new File("C:\\Users\\91701\\OneDrive\\Desktop\\screenshot\\image.jpg"));
+		
+		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div/div/div[1]/form/div[2]/div[6]/a/span")).click();
+//		Actions action = new Actions(driver);
+//		action.moveToElement(driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div/div/div[1]/form/div[2]/div[7]/button")));
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div/div/div[1]/form/div[2]/div[7]/button")).submit();
+//		driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div[2]/div/div/div[1]/form/div[2]/div[7]/button")).submit();
+		
+	}
+
+}
