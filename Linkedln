@@ -1,0 +1,67 @@
+package linkedin_demo;
+
+import static org.junit.Assert.*;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+public class project {
+	WebDriver driver;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+
+		System.setProperty("webdriver.edge.driver","C:\\Users\\gunji\\Downloads\\edgedriver_win64\\msedgedriver.exe");
+		driver = new EdgeDriver();
+		driver.get("https://in.linkedin.com");
+		driver.manage().window().maximize();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void test() throws InterruptedException, IOException {
+		 File src8 =  ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		  FileUtils.copyFile(src8, new File("C:\\Users\\gunji\\OneDrive\\Desktop\\Sreenshot\\image8.jpg"));
+		driver.findElement(By.xpath("/html/body/nav/div/a[1]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.id("email-or-phone")).sendKeys("ujcaryb4gf@smykwb.com");
+		driver.findElement(By.id("password")).sendKeys("admin@123");
+		 File src9 =  ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		  FileUtils.copyFile(src9, new File("C:\\Users\\gunji\\OneDrive\\Desktop\\Sreenshot\\image9.jpg"));
+		driver.findElement(By.xpath("//*[@id=\"email-or-phone\"]")).click();
+		driver.findElement(By.xpath("//*[@id=\"password\"]")).click();
+		driver.findElement(By.xpath("//*[@id=\"join-form-submit\"]")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"first-name\"]")).sendKeys("Chakravarthi");
+		driver.findElement(By.xpath("//*[@id=\"last-name\"]")).sendKeys("Anumala");
+		 File src10 =  ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		  FileUtils.copyFile(src10, new File("C:\\Users\\gunji\\OneDrive\\Desktop\\Sreenshot\\image10.jpg"));
+		driver.findElement(By.xpath("//*[@id=\"join-form-submit\"]")).click();
+		Thread.sleep(2000);
+	
+	}
+
+}
